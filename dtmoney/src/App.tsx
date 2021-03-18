@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from "./styles/theme";
 import { Dashboard } from "./components/Dashboard";
 import { NewTransactionModal } from './components/NewTransactionModal';
+import { TransactionsProvider } from './hooks/useTransactions';
 
 Modal.setAppElement('#root');
 
@@ -22,15 +23,17 @@ export function App() {
   
   return (
     <ThemeProvider theme={theme}>
-      <HeaderComponent onOpenNewTransactionModal={handleOpenNewTransactionModal} />
-      <Dashboard />
+      <TransactionsProvider>
+        <HeaderComponent onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+        <Dashboard />
 
-      <NewTransactionModal 
-        isOpen={isNewTransactionModalOpen} 
-        onRequestClose={handleCloseNewTransactionModal} 
-      />
-      
-      <GlobalStyle />
+        <NewTransactionModal 
+          isOpen={isNewTransactionModalOpen} 
+          onRequestClose={handleCloseNewTransactionModal} 
+        />
+        
+        <GlobalStyle />
+      </TransactionsProvider>
     </ThemeProvider>
   );
 };
