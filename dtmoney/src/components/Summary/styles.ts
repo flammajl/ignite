@@ -30,6 +30,9 @@ const Container = styled.div`
       background: ${({ theme }) => theme.colors.green};
       color: #fff;
     }
+    &.highlight-background-red {
+      background: ${({ theme }) => theme.colors.red};
+    }
   }
 `;
 
